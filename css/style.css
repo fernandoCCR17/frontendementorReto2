@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
+:root{
+    --VeryDarkDesaturatedBlue: hsl(238, 29%, 16%);
+    --SoftRed: hsl(14, 88%, 65%);
+    --GradientSoftViolet: hsl(273, 75%, 66%);
+    --GradientSoftBlue: hsl(240, 73%, 65%);
+    --VeryDarkGrayishBlue: hsl(237, 12%, 33%);
+    --DarkGrayishBlue: hsl(240, 6%, 50%);
+    --LightGrayishBlue: hsl(240, 5%, 91%);
+}
+
+html{
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body{
+    width: 100%;
+    min-height: 100vh;
+    font-size: 1.2rem;
+    font-family: 'Kumbh Sans', sans-serif;
+    background: linear-gradient(to bottom, var(--GradientSoftViolet), var(--GradientSoftBlue));
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card{
+    width: 88%;
+    background-color: #fff;
+    border-radius: 2rem;
+    padding: 0 3rem 3rem;
+    position: relative;
+    margin-top: 14rem;
+    max-width: 31.9rem;
+}
+
+@media (min-width: 1200px) {
+    .card{
+        padding: 0 3rem 0 0;
+        margin: 8rem 0;
+        max-width: 80rem;
+        min-height: 44rem;
+        display: grid;
+        grid-template-columns: repeat(2, 50%);
+    }
+}
+
+/* imagenes */
+.card-img-mobile{
+    display: flex;
+    justify-content: center;
+}
+.img-mobile-ilustration{
+    width: 70%;
+    position: absolute;
+    top: -9.5rem;
+}
+
+.img-mobile-shadow{
+    width: 90%;
+}
+
+.card-img-desktop{
+    display: none;
+}
+
+.img-desktop-box, .img-desktop-ilustration{
+    position: absolute;
+}
+
+.img-desktop-box{
+    width: 17rem;
+    left: -9rem;
+    top: 18.5rem;
+    z-index: 1;
+}
+
+.card_desktop_container_shadow{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.img-desktop-ilustration{
+    width: 40rem;
+    left: -7rem;
+    top: 7rem;
+}
+
+.img-desktop-shadow{
+    width: 80rem;
+    position: absolute;
+    left: -47rem;
+    top: -22rem;
+}
+
+@media (min-width: 1200px) {
+    .card-img-mobile{
+        display: none;
+    }
+
+    .card-img-desktop{
+        display: block;
+        position: relative;
+    }
+}
+
+/* Preguntas */
+.card_title-center{
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+@media (min-width: 1200px) {
+    .card_title-center{
+        text-align: left;
+        font-size: 3.5rem;
+    }
+}
+
+.card_ask{
+    height: auto;
+    border-bottom: 1px solid var(--LightGrayishBlue);
+}
+
+.card_ask-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: var(--VeryDarkDesaturatedBlue);
+}
+.card_title{
+    font-size: 1.3rem;
+    font-weight: normal;
+}
+
+.card_title-weight{
+    font-weight: bold;
+}
+
+.card_text{
+    color: var(--VeryDarkGrayishBlue);
+    position: absolute;
+    scale: 0; 
+}
+
+.card_text.animation{
+    animation-name: desplegarSeccion;
+    animation-duration: .3s;   
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+}
+
+.card_text.hideAnimation{
+    animation-name: ocultarSeccion;
+    animation-duration: .3s;   
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+}
+
+.card_arrow{
+    width: 1.2rem;
+    height: 1rem;
+    transition-property: transform;
+    transition-duration: .4s;
+}
+
+.card_arrow-rotate{
+    transform: rotate(180deg);
+}
+
+.card_ask-container:hover{
+    color: var(--SoftRed);
+}
+
+@media (min-width: 1200px) {
+    .card_questions{
+        padding: 6rem 9rem 5rem 0;
+    }
+}
+
+@keyframes desplegarSeccion {
+    0%   {
+        position: absolute;
+        transform: translateY(-100%);
+    }
+    
+    40%{
+        scale: 1;
+        position: relative;
+    }
+    
+    100% {
+        scale: 1;
+        position: relative;
+        transform: translateY(0%);
+    }
+}
+
+@keyframes ocultarSeccion {
+    0% {
+        scale: 1;
+        position: relative;
+        transform: translateY(0%);
+    }
+    
+    80%{
+        scale: 1;
+        position: relative;
+    }
+    
+    100%   {
+        position: absolute;
+        transform: translateY(-100%);
+    }
+}
