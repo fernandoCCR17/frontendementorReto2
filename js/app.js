@@ -1,46 +1,38 @@
-const arrowUno = document.querySelector('.card_arrowUno');
-const arrowDos = document.querySelector('.card_arrowDos');
-const arrowTres = document.querySelector('.card_arrowTres');
-const arrowCuatro = document.querySelector('.card_arrowCuatro');
-const arrowCinco = document.querySelector('.card_arrowCinco');
+const preguntas = document.querySelectorAll(".card_ask-container")
 
-arrowUno.addEventListener('click', contadorClicks);
-arrowDos.addEventListener('click', contadorClicks);
-arrowTres.addEventListener('click', contadorClicks);
-arrowCuatro.addEventListener('click', contadorClicks);
-arrowCinco.addEventListener('click', contadorClicks);
+preguntas.forEach(pregunta => {
+    pregunta.addEventListener("click", function(){
+        const parrafoPregunta = pregunta.parentElement.querySelector(".card_text")
 
-function contadorClicks(e){
-    e.preventDefault();
-    const contenedorPregunta = e.target;
-    let parrafo, tituloPregunta, arrow;
-    if(contenedorPregunta.classList.contains('card_ask-container')){
-        parrafo = e.target.parentElement.querySelector('.card_text');
-        tituloPregunta = e.target.querySelector('.card_title');
-        arrow = e.target.querySelector('.card_arrow');
-    }else if(contenedorPregunta.classList.contains('card_title') || contenedorPregunta.classList.contains('card_arrow')){
-        parrafo = e.target.parentElement.parentElement.querySelector('.card_text');
-        tituloPregunta = e.target.parentElement.querySelector('.card_title');
-        arrow = e.target.parentElement.querySelector('.card_arrow');
-    }
-    if(!parrafo.classList.contains('animation')){
-        mostrarInfo(parrafo, tituloPregunta, arrow);
-    }else{
-        ocultarInfo(parrafo, tituloPregunta, arrow);
-    }
+        if (!parrafoPregunta.classList.contains("animation")){
+            const parrafoActivo = pregunta.parentElement.parentElement.querySelector(".animation")
+            if(parrafoActivo){
+                ocultarInformacion(parrafoActivo)
+            }
+
+            mostrarInformacion(parrafoPregunta)
+        }else{
+            ocultarInformacion(parrafoPregunta)
+        }
+    })
+});
+
+function mostrarInformacion(parrafoPregunta){
+    const tituloPregunta = parrafoPregunta.parentElement.querySelector(".card_title")
+    const flechaPregunta = parrafoPregunta.parentElement.querySelector(".card_arrow")
+
+    parrafoPregunta.classList.contains("hideAnimation") ? parrafoPregunta.classList.remove("hideAnimation") : ""
+    parrafoPregunta.classList.add("animation")
+    tituloPregunta.classList.add("card_title-weight")
+    flechaPregunta.classList.add("card_arrow-rotate")
 }
 
-function mostrarInfo(parrafo, tituloPregunta, arrow){
+function ocultarInformacion(parrafoPregunta){
+    const tituloPregunta = parrafoPregunta.parentElement.querySelector(".card_title")
+    const flechaPregunta = parrafoPregunta.parentElement.querySelector(".card_arrow")
 
-    parrafo.classList.contains('hideAnimation') ? parrafo.classList.remove('hideAnimation') : ""
-    parrafo.classList.add('animation');
-    tituloPregunta.classList.add('card_title-weight');
-    arrow.classList.add('card_arrow-rotate');
-}
-
-function ocultarInfo(parrafo, tituloPregunta, arrow){
-    parrafo.classList.remove('animation')
-    parrafo.classList.add('hideAnimation');
-    tituloPregunta.classList.remove('card_title-weight');
-    arrow.classList.remove('card_arrow-rotate');
+    parrafoPregunta.classList.add("hideAnimation")
+    parrafoPregunta.classList.remove("animation")
+    tituloPregunta.classList.remove("card_title-weight")
+    flechaPregunta.classList.remove("card_arrow-rotate")
 }
